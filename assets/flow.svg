@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" width="920" height="450" role="img" aria-labelledby="t d">
+  <title id="t">Claude Code, EVREN geçidi ve model filosu arasındaki istek akışı</title>
+  <desc id="d">Terminaldeki Claude Code, anahtar dosyasından EVREN_API_KEY değerini okur, isteği EVREN geçidine yollar. Geçit anahtarı, kullanım şartlarını ve kotayı kontrol eder, seçilen model cevabı akış olarak geri gönderir.</desc>
+  <style>
+    :root { --bg:#ffffff; --fg:#1f2328; --mut:#59636e; --box:#f6f8fa; --bd:#d1d9e0; --req:#0969da; --res:#1a7f37; --key:#9a6700; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#0d1117; --fg:#e6edf3; --mut:#9198a1; --box:#161b22; --bd:#30363d; --req:#58a6ff; --res:#3fb950; --key:#d29922; }
+    }
+    text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "DejaVu Sans Mono", monospace; fill: var(--fg); }
+    .h  { font-size: 16px; font-weight: 700; }
+    .s  { font-size: 12px; fill: var(--mut); }
+    .t  { font-size: 12px; }
+    .g  { font-size: 11.5px; }
+    .big{ font-size: 18px; font-weight: 700; }
+    .cap{ font-size: 13px; }
+    .box{ fill: var(--box); stroke: var(--bd); stroke-width: 1.5; }
+    .lane{ stroke: var(--bd); stroke-width: 2; stroke-dasharray: 5 5; }
+  </style>
+
+  <rect width="920" height="450" fill="var(--bg)"/>
+  <text x="30" y="32" class="big">Claude Code → EVREN: istek nereden nereye gidiyor?</text>
+
+  <!-- yol çizgileri (kutuların arkasında) -->
+  <line x1="145" y1="126" x2="775" y2="126" class="lane"/>
+  <line x1="775" y1="272" x2="145" y2="272" class="lane"/>
+
+  <!-- 1) Terminal -->
+  <rect x="30" y="56" width="230" height="236" rx="10" class="box"/>
+  <text x="46" y="84" class="h">① Terminal</text>
+  <text x="46" y="104" class="s">Claude Code</text>
+  <text x="46" y="160" class="t">BASE_URL   → EVREN adresi</text>
+  <text x="46" y="184" class="t">AUTH_TOKEN → anahtarın</text>
+  <text x="46" y="208" class="t">MODEL      → seçtiğin model</text>
+  <text x="46" y="246" class="s">eski sk-ant anahtarı silinir</text>
+
+  <!-- 2) Geçit -->
+  <rect x="345" y="56" width="230" height="236" rx="10" class="box"/>
+  <text x="361" y="84" class="h">② EVREN Geçidi</text>
+  <text x="361" y="104" class="s">evren-llmapi.ssyz.org.tr</text>
+  <rect x="361" y="146" width="198" height="32" rx="6" fill="none" stroke="var(--bd)"/>
+  <rect x="361" y="188" width="198" height="32" rx="6" fill="none" stroke="var(--bd)"/>
+  <rect x="361" y="230" width="198" height="32" rx="6" fill="none" stroke="var(--bd)"/>
+  <rect x="361" y="146" width="198" height="32" rx="6" fill="var(--req)" opacity="0">
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;0;0.28;0.28;0;0" keyTimes="0;0.115;0.12;0.29;0.295;1"/>
+  </rect>
+  <rect x="361" y="188" width="198" height="32" rx="6" fill="var(--req)" opacity="0">
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;0;0.28;0.28;0;0" keyTimes="0;0.165;0.17;0.29;0.295;1"/>
+  </rect>
+  <rect x="361" y="230" width="198" height="32" rx="6" fill="var(--req)" opacity="0">
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;0;0.28;0.28;0;0" keyTimes="0;0.215;0.22;0.29;0.295;1"/>
+  </rect>
+  <text x="371" y="167" class="g">1 · Anahtar geçerli mi?</text>
+  <text x="371" y="209" class="g">2 · Şartlar onaylı mı?</text>
+  <text x="371" y="251" class="g">3 · Kota var mı? (15M/gün)</text>
+
+  <!-- 3) Model filosu -->
+  <rect x="660" y="56" width="230" height="236" rx="10" class="box"/>
+  <text x="676" y="84" class="h">③ Model filosu</text>
+  <text x="676" y="104" class="s">yurt içi H200 kümesi</text>
+  <rect x="672" y="146" width="206" height="26" rx="6" fill="var(--res)" opacity="0.15">
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0.15;0.15;0.5;0.5;0.15;0.15" keyTimes="0;0.37;0.38;0.5;0.51;1"/>
+  </rect>
+  <text x="680" y="164" class="t">deepseek-v4.1-flash</text>
+  <text x="680" y="196" class="t">glm-5.3</text>
+  <text x="680" y="220" class="t">mimo-v2.6-pro</text>
+  <text x="680" y="244" class="t">qwen3.8-flash-next</text>
+
+  <!-- Anahtar dosyası -->
+  <rect x="30" y="338" width="230" height="58" rx="10" class="box"/>
+  <text x="46" y="362" class="t" style="font-weight:700">~/.config/evren/env</text>
+  <text x="46" y="382" class="s">EVREN_API_KEY=evren_llm_…</text>
+  <line x1="145" y1="338" x2="145" y2="292" stroke="var(--key)" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="156" y="320" class="s" style="fill:var(--key)">okur (izin 600)</text>
+
+  <!-- Açıklama -->
+  <text x="345" y="352" class="cap">1) Claude Code isteği /v1/messages ucuna yollar</text>
+  <text x="345" y="376" class="cap">2) Geçit anahtarı, şartları ve kotayı kontrol eder</text>
+  <text x="345" y="400" class="cap">3) Model cevabı akış (SSE) olarak geri döner</text>
+
+  <!-- Gösterge -->
+  <circle cx="40" cy="430" r="6" fill="var(--key)"/><text x="54" y="434" class="s">API anahtarı</text>
+  <circle cx="180" cy="430" r="6" fill="var(--req)"/><text x="194" y="434" class="s">istek</text>
+  <circle cx="270" cy="430" r="6" fill="var(--res)"/><text x="284" y="434" class="s">cevap (akış)</text>
+
+  <!-- Hareketli paketler (kutuların üstünde) -->
+  <!-- anahtar: dosyadan terminale -->
+  <circle r="6" fill="var(--key)" opacity="0">
+    <animateMotion dur="8s" begin="0s" repeatCount="indefinite" path="M145,338 V292" keyPoints="0;1;1" keyTimes="0;0.1;1" calcMode="linear"/>
+    <animate attributeName="opacity" dur="8s" begin="0s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.01;0.095;0.1;1"/>
+  </circle>
+  <!-- istek: terminal → geçit → model -->
+  <circle r="7" fill="var(--req)" opacity="0">
+    <animateMotion dur="8s" begin="1s" repeatCount="indefinite" path="M145,126 H775" keyPoints="0;1;1" keyTimes="0;0.375;1" calcMode="linear"/>
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.01;0.37;0.38;1"/>
+  </circle>
+  <!-- cevap: model → terminal (3 küçük parça = akış) -->
+  <circle r="5" fill="var(--res)" opacity="0">
+    <animateMotion dur="8s" begin="1s" repeatCount="indefinite" path="M775,272 H145" keyPoints="0;0;1;1" keyTimes="0;0.5;0.875;1" calcMode="linear"/>
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.499;0.5;0.87;0.875;1"/>
+  </circle>
+  <circle r="5" fill="var(--res)" opacity="0">
+    <animateMotion dur="8s" begin="1s" repeatCount="indefinite" path="M775,272 H145" keyPoints="0;0;1;1" keyTimes="0;0.53;0.905;1" calcMode="linear"/>
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.529;0.53;0.9;0.905;1"/>
+  </circle>
+  <circle r="5" fill="var(--res)" opacity="0">
+    <animateMotion dur="8s" begin="1s" repeatCount="indefinite" path="M775,272 H145" keyPoints="0;0;1;1" keyTimes="0;0.56;0.935;1" calcMode="linear"/>
+    <animate attributeName="opacity" dur="8s" begin="1s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.559;0.56;0.93;0.935;1"/>
+  </circle>
+</svg>

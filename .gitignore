@@ -1,0 +1,13 @@
+# Anahtarlar asla repoya girmesin
+.env
+.env.*
+*.key
+env
+evren_key*
+.claude/settings.local.json
+
+# Yedekler ve geçici dosyalar
+*.evren.bak
+*.evren-uninstall.bak
+*.tmp
+.DS_Store
